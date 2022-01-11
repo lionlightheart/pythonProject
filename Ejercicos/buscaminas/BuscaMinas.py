@@ -3,7 +3,7 @@
 #  02/01/2022 15:39                                                                   #
 #  Ramón Panadero Dobarro                                                             #
 #  DAW_D 1º                                                                           #
-#  Busca minas V0.0                                                                   #
+#  Busca minas V0.0 alpha                                                                #
 #######################################################################################
 """
 import random
@@ -37,8 +37,8 @@ def mostar_tablero(tablero_puro, eje_x, eje_y):
 
 
 
-def colocar_minas(tablero, minas, eje_x, eje_y):
-    tablero_con_minas = tablero
+def colocar_minas(minas, eje_x, eje_y):
+    tablero_con_minas = [["x " for x in range(eje_x)] for y in range(eje_y)]
     mina_grafica = "m "
     random_x = 0
     random_y = 0
@@ -98,8 +98,9 @@ def jugar_buscaminas():
     tablero, eje_x, eje_y = generar_tablero()
     casillas = eje_x * eje_y
     minas = generar_minas(casillas)
-    tablero_con_minas = colocar_minas(tablero, minas, eje_x, eje_y)
-    while vida == verdadero_faslo:
+    tablero_con_minas = colocar_minas(minas, eje_x, eje_y)
+    mostar_tablero(tablero, eje_x, eje_y)
+    while vida == verdadero_faslo and tablero != tablero_con_minas:
         tablero, vida = comprobar_datos(tablero, tablero_con_minas, eje_x, eje_y)
         mostar_tablero(tablero, eje_x, eje_y)
 
